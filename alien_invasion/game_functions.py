@@ -69,11 +69,22 @@ def create_rain_grid(ai_settings, screen, rain):
             raindrop.rect.y = raindrop.y + random_number
             rain.add(raindrop)
     
-
-def rain_falling(ai_settings, rain):
-    """Drops all of the rian"""
+def update_rainfall(ai_settings, screen, rain):
+    """Drops all of the rain then checks the status of rainfall"""
     for raindrop in rain.sprites():
         raindrop.rect.y += ai_settings.rainfall_speed
+        
+    #Update rain positions
+    rain.update()
+
+    #get rid of bullets that are out of the screen
+    for raindrop in rain.copy():
+        if raindrop.rect.top >= ai_settings.screen_height:
+            rain.remove(raindrop)
+
+    if len(rain) == 0:
+        #if entire fleet is destroyed, start a new level
+            create_rain_grid(ai_settings, screen, rain)
 
 def get_number_aliens_x(ai_settings, alien_width):
     """Determine the number of aliens that fit in a row."""
@@ -315,7 +326,8 @@ def check_high_score(stats, sb):
     """Check to see if there's a new high score."""
     if stats.score > stats.high_score:
         stats.high_score = stats.score
-        sb.prep_high_score()
+        sb.prep_high_score()
+
 
 def update_screen(ai_settings, screen, ship, aliens, bullets, stars, rain,
                   stats, play_button, sb):
