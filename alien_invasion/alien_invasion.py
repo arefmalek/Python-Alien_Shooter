@@ -56,7 +56,7 @@ def run_game():
             ship.update()  
             # Redraw the screen during each pass through the loop.      
             # Make the most recently drawn screen visible.
-            gf.rain_falling(ai_settings, rain)
+            gf.update_rainfall(ai_settings, screen, rain)
             gf.update_bullets(
                 ai_settings, screen, ship, aliens, bullets, stats, sb)
             gf.update_aliens(
