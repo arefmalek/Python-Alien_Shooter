@@ -1,12 +1,14 @@
 import pygame
-from pygame.sprite import Sprite
+from pygame.sprite import Sprite
+
 
 from settings import Settings
 
 class Ship(Sprite):
     def __init__(self, ai_settings, screen):
         """Initialize the ship and set its starting position."""
-        super(Ship, self).__init__()
+        super(Ship, self).__init__()
+
         self.screen = screen
         self.ai_settings = ai_settings
 
@@ -52,8 +54,8 @@ class Ship(Sprite):
 
     def center_ship(self):
         """Center the ship on the screen."""
-        self.x = self.screen_rect.centerx
-        self.y = self.screen_rect.bottom   
+        self.xdir = self.screen_rect.centerx
+        self.ydir = self.screen_rect.bottom - self.height   
 
         
     def blitme(self):
