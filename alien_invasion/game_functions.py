@@ -157,7 +157,7 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets, sb):
         # Create a new fleet and center the ship.
         create_fleet(ai_settings, screen, ship, aliens)
 
-        #DEBUGG!!! DOESNT MOVE TO CENTER-BOTTOM OF SCREEN
+        #Finally patched the ship failing to reset itself
         ship.center_ship()
 
         # Pause.
